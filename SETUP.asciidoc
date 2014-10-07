@@ -1,0 +1,6 @@
+++++
+heroku config:add TZ=Asia/Tokyo
+heroku config:add BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-multi.git
+heroku addons:add redistogo
+heroku addons:add scheduler
+++++
