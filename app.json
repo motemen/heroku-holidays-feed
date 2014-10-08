@@ -1,0 +1,19 @@
+{
+  "name": "Holidays Feed",
+  "description": "Heroku app for building holidays (http://misc.tokyoenvious.net/holidays/holidays.html) feed",
+  "keywords": [
+    "japanese",
+    "holidays",
+    "long weekends"
+  ],
+  "addons": [
+    "redistogo:nano",
+    "scheduler:standard"
+  ],
+  "env": {
+    "LANG": "en_US.UTF-8",
+    "RACK_ENV": "production",
+    "TZ": "Asia/Tokyo",
+    "BUILDPACK_URL": "https://github.com/ddollar/heroku-buildpack-multi.git"
+  }
+}
