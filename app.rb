@@ -10,12 +10,13 @@ get '/' do
 end
 
 get '/rss' do
-  keys = redis.keys.sort.reverse.first(30)
+  keys = redis.keys.sort.select { |k| /^holidays:/ === k }.reverse.first(30)
 
   @entries = if keys.empty?
     []
   else
     redis.mget(keys).map do |v|
+      p v
       JSON.parse(v)
     end
   end
@@ -26,7 +27,7 @@ get '/rss' do
       if d == '0'
         /^\D+$/
       elsif /^\d+$/ === d
-        %r( #{d} )
+        %r(^\D+ #{d} )
       else
         /(?!)/
       end
