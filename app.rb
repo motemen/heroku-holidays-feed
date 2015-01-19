@@ -43,3 +43,13 @@ get '/rss' do
   content_type 'text/xml'
   builder :rss
 end
+
+get '/ietile.xml' do
+  key = redis.keys.select { |k| /^holidays:/ === k }.sort.last
+
+  @e = JSON.parse(redis.get(key))
+  @d = @e['body'].match(/\d+/)[0] || '★'
+
+  content_type 'text/xml'
+  erb :ietile
+end
